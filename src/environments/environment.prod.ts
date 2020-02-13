@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://service.prod.speekio.com/api/'
+  apiUrl: 'http://13.250.51.161/api/'
 };

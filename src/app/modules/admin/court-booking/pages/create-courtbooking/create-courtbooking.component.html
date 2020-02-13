@@ -45,7 +45,7 @@
                     <select  [(ngModel)]="addCourtsBookingData.CourtId"
                     name="CourtId" class="form-control" #CourtId="ngModel" required>
                      <option  [ngValue]="''" disabled>Select court for booking...</option>
-                      <option [ngValue]="court.id" *ngFor="let court of courtList">{{court.name}}</option>
+                      <option [ngValue]="court.id" *ngFor="let court of courtsList">{{court.name}}</option>
                    </select>
                    <div *ngIf="addBookingForm.submitted && CourtId.invalid" class="invalid-feedback">
                     <div *ngIf="CourtId.errors?.required">Court name is required</div>
@@ -57,7 +57,7 @@
                     <div class="form-group">
                       <label for="NameField" class="font-weight-bolder">Booking Start Time</label>
                       <input type="datetime-local" class="form-control" name="BookingStartTime"
-                      [(ngModel)]="addCourtsBookingData.BookingStartTime" #Name="ngModel"
+                      [(ngModel)]="addCourtsBookingData.BookingStartTime" #BookingStartTime="ngModel"
                       [ngClass]="{ 'is-invalid': addBookingForm.submitted && BookingStartTime.invalid}" required>
                     <div *ngIf="addBookingForm.submitted && BookingStartTime.invalid" class="invalid-feedback">
                       <div *ngIf="BookingStartTime.errors?.required">Booking Start Time is required</div>
@@ -68,7 +68,7 @@
                     <div class="form-group">
                       <label for="NameField" class="font-weight-bolder">Booking End Time</label>
                       <input type="datetime-local" class="form-control" name="BookingEndTime"
-                      [(ngModel)]="addCourtsBookingData.BookingEndTime" #Name="ngModel"
+                      [(ngModel)]="addCourtsBookingData.BookingEndTime" #BookingEndTime="ngModel"
                       [ngClass]="{ 'is-invalid': addBookingForm.submitted && BookingEndTime.invalid}" required>
                     <div *ngIf="addBookingForm.submitted && BookingEndTime.invalid" class="invalid-feedback">
                       <div *ngIf="BookingEndTime.errors?.required">Booking End Time is required</div>
@@ -78,7 +78,7 @@
               </div>
                 <div class="container">
                 <button *ngIf="!isUpdated" type="submit" class="btn btn-primary float-right mr-2">Add CourtBooking</button>
-                <button *ngIf="id && id > 0" type="submit" class="btn btn-primary float-right mr-2">Update CourtBooking</button>
+                <button *ngIf="courtsBookingId && courtsBookingId > 0" type="submit" class="btn btn-primary float-right mr-2">Update CourtBooking</button>
                 </div>
             <!-- <div class="card-footer"> <a (click)="addSports()" class="btn btn-primary float-right mr-2">Add CourtBooking</a>
                -->

@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { ControlMessageComponent } from './user_control/components/control-message/control-message.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { DefaultDateFormatPipe } from './pipes/date-format.pipe';
 
 @NgModule({
-  declarations: [ControlMessageComponent],
+  declarations: [ControlMessageComponent,DefaultDateFormatPipe],
   imports: [
     CommonModule,
     FormsModule,
@@ -19,7 +20,7 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     RouterModule,
     ControlMessageComponent,
-    
+    DefaultDateFormatPipe
     
   ],
   entryComponents: [],
