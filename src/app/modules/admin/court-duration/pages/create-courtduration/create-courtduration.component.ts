@@ -29,10 +29,9 @@ export class CreateCourtdurationComponent implements OnInit {
 
   sportsId: number; //to be assigned from dropdown
   ngOnInit() {
-    debugger;
     this.addCourtsDuratoinData = new AddCourtsDurationModel();
 
-      this.addCourtsDuratoinData.userId = this.uId;
+    //  this.addCourtsDuratoinData.userId = this.uId;
     this.courtsDurationId = this.activatedRoute.snapshot.params['id'];
       this.getSports(this.companyId);
     if(this.courtsDurationId > 0){
@@ -61,7 +60,7 @@ getCourts(sportId:number){   //get list of courts for cmp in selected sports
   this.courtsDurationService.getCourts(sportId).subscribe(result => {
     if (result && result.successful) {
       this.courtsList = result.courtsList;
-      this.addCourtsDuratoinData.CourtId = this.courtsList[0].id;
+      this.addCourtsDuratoinData.courtId = this.courtsList[0].id;
 
     }
     else {
@@ -71,7 +70,7 @@ getCourts(sportId:number){   //get list of courts for cmp in selected sports
 }
 selectCourt(courtId){
 
-  this.addCourtsDuratoinData.CourtId = courtId;
+  this.addCourtsDuratoinData.courtId = courtId;
 }
 getCourtsDuration(courtsDurationId:number){
   this.courtsDurationService.getCourtsDuration(courtsDurationId).subscribe(result => {
@@ -91,24 +90,26 @@ if(this.isUpdated == true)
 this.updateCourtsDuration();
 else{
     this.courtsDurationService.addCourtsDuration(this.addCourtsDuratoinData).subscribe(result => {
+      debugger;
     if (result && result.body.successful) {
       this.toastService.showSuccess(result.body.message);
       this.customRouter.navigateToSibling(this.router, this.activatedRoute, 'courtduration-list');
     }
     else {
-      this.toastService.showError(result.message);
+      this.toastService.showError(result.body.message);
     }
   });
   }
 }
 updateCourtsDuration(){
 this.courtsDurationService.updateCourtsDuration(this.addCourtsDuratoinData).subscribe(result =>{
+  debugger;
   if(result && result.body.successful) {
     this.toastService.showSuccess(result.body.message);
     this.customRouter.navigateToSibling(this.router, this.activatedRoute, 'courtduration-list');
   }
   else {
-    this.toastService.showError(result.message);
+    this.toastService.showError(result.body.message);
   }
 });
 }
