@@ -58,6 +58,16 @@ export class AuthenticationService {
     this.router.navigate(['/admin/home']);
   }
 
+  loginAndRedirectToUrl(user: any,url:string) {
+    this.saveUser(user);
+    if (user.permissions) {
+      this.saveUserPermissions(user.permissions);
+    }
+    this.loggedInUser.next(user);
+    this.loggedIn.next(true);
+    this.router.navigate([url]);
+  }
+
   saveUserPermissions(permissions: UserPermissionModel[]) {
     let permissionList = permissions.map(item => {
       let claim = new UserPermissionModel();

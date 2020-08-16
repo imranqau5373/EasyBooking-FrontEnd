@@ -102,7 +102,6 @@ export class BookingListComponent extends PagedListingComponentBase<CourtsBookin
   }
 
   openBookingDialog(){
-    debugger;
     if(this.authenticationService.isUserLoggedIn()){
       this.openLoggedInUser();
     }

@@ -2,13 +2,40 @@
 
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="slotDeleteDlgLabel">Confirmation</h5>
+          <h5 class="modal-title" id="slotDeleteDlgLabel">User Login</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeDialog()"> <span aria-hidden="true">&times;</span> </button>
         </div>
         <div class="modal-body">
-          <p>Please create your account and confirm your booking. </p>
-          <button type="button" class="btn btn-outline-success" (click)="singup()">Sign Up</button>
-          <button type="button" class="btn btn-outline-primary" (click)="login()">Login</button>
+          <form [formGroup]="loginForm" (ngSubmit)="login()">
+      
+  
+           
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input 
+                    formControlName="email"
+                    id="email" 
+                    type="text" 
+                    class="form-control">
+                <div *ngIf="f.email.touched && f.email.invalid" class="alert alert-danger">
+                    <div *ngIf="f.email.errors.required">Email is required.</div>
+                    <div *ngIf="f.email.errors.email">Please, enter valid email address.</div>
+                </div>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input 
+                  formControlName="password"
+                  id="password" 
+                  type="password" 
+                  class="form-control">
+              <div *ngIf="f.password.touched && f.password.invalid" class="alert alert-danger">
+                  <div *ngIf="f.password.errors.required">password is required.</div>
+                  <div *ngIf="f.password.errors.minlength">password should be 3 character.</div>
+              </div>
+          </div>
+            <button class="btn btn-primary" type="submit">Login</button>
+        </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-primary" data-dismiss="modal" (click)="closeDialog()">Close</button>

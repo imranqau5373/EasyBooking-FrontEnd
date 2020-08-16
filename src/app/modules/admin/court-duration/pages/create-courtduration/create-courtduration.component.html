@@ -81,7 +81,7 @@
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label for="NameField" class="font-weight-bolder">Facility Start Time</label>
-                    <input type="datetime-local" class="form-control" name="CourtStartTime"
+                    <input type="time" class="form-control" name="CourtStartTime"
                       [(ngModel)]="addCourtsDuratoinData.courtStartTime" #CourtStartTime="ngModel"
                       [ngClass]="{ 'is-invalid': addDurationForm.submitted && CourtStartTime.invalid}" required>
                     <div *ngIf="addDurationForm.submitted && CourtStartTime.invalid" class="invalid-feedback">
@@ -89,7 +89,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-4">
+                <!-- <div class="col-lg-4">
                   <div class="form-group">
                     <label for="NameField" class="font-weight-bolder">Facility Start Time</label>
                     <input type="time" class="form-control" name="CourtStartTime"
@@ -99,7 +99,7 @@
                       <div *ngIf="CourtStartTime.errors?.required">Start Time is required</div>
                     </div>
                   </div>
-                </div>
+                </div> -->
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label for="NameField" class="font-weight-bolder">Facility End Time</label>

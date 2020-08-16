@@ -1,91 +1,88 @@
-<!-- 
-  <form name="form" (ngSubmit)="f.form.valid && saveUserBooking(f)" #f="ngForm" class="form-inline">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Create Your Account</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeDialog()"> <span aria-hidden="true">&times;</span> </button>
-          </div>
-          <div class="modal-body">
-            <div class="form-row">
-              <div class="input-group ">
-                <label for="validationCustom01">First Name<span
-                  class="text-danger ml-1">*</span></label>
-          <input type="text" class="form-control" formControlName="firstName" name="FirstName"
-              id="validationCustom01" placeholder="First name is required.">
-          <div *ngIf="f.submitted && f.firstName.errors?.required"
-              class="invalid-feedback d-block">
-              First name is required.
-          </div>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="input-group ">
-                <label for="validationCustom01">Last Name<span
-                  class="text-danger ml-1">*</span></label>
-                <input type="text" class="form-control mb-2 mr-sm-2 w-50" id="inlineFormInputName"
-                    placeholder="Enter user name" [(ngModel)]="userBookingModel.lastname" name="name"
-                    #name="ngModel" required>
-                <div *ngIf="f.submitted && name.invalid" class="invalid-feedback d-block">
-                    Please enter person name.
-                </div>
-              </div>
-            </div>
-                         <div class="form-row">
-                <div class="input-group ">
-                  <label for="validationCustom01">Phone<span
-                    class="text-danger ml-1">*</span></label>
-                  <input type="text" class="form-control mb-2 mr-sm-2 w-50" id="inlineFormInputPhone"
-                      placeholder="Enter user phone" [(ngModel)]="userBookingModel.phone" name="phone"
-                      #phone="ngModel" required>
-                  <div *ngIf="f.submitted && phone.invalid" class="invalid-feedback d-block">
-                      Please enter person name.
-                  </div>
-                </div>
-              </div>
-              <div class="form-row">
-                  <div class="input-group ">
-                    <label for="validationCustom01">Email<span
-                      class="text-danger ml-1">*</span></label>
-                      <input type="text" class="form-control mb-2 mr-sm-2 w-50" id="inlineFormInputEmail"
-                          placeholder="Enter user email" [(ngModel)]="userBookingModel.email"
-                          pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" name="email"
-                          #email="ngModel" required>
-                      <div *ngIf="f.submitted && email.invalid" class="invalid-feedback d-block">
-                          Please enter valid email address.
-                      </div>
-                  </div>
-              </div>
- 
- 
-              <div class="form-row">
-                <div class="input-group ">
-                  <label for="validationCustom01">Password<span
-                    class="text-danger ml-1">*</span></label>
-                  <input type="text" class="form-control mb-2 mr-sm-2 w-50" id="inlineFormInputPhone"
-                      placeholder="Enter user phone" [(ngModel)]="userBookingModel.phone" name="phone"
-                      #phone="ngModel" required>
-                  <div *ngIf="f.submitted && phone.invalid" class="invalid-feedback d-block">
-                      Please enter person name.
-                  </div>
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="input-group ">
-                  <label for="validationCustom01">Confirm Password<span
-                    class="text-danger ml-1">*</span></label>
-                  <input type="text" class="form-control mb-2 mr-sm-2 w-50" id="inlineFormInputPhone"
-                      placeholder="Enter user phone" [(ngModel)]="userBookingModel.phone" name="phone"
-                      #phone="ngModel" required>
-                  <div *ngIf="f.submitted && phone.invalid" class="invalid-feedback d-block">
-                      Please enter person name.
-                  </div>
-                </div>
-              </div>
 
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="slotDeleteDlgLabel">User SignUp</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeDialog()"> <span aria-hidden="true">&times;</span> </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="signupVerificationForm" (ngSubmit)="saveUser()">
+      
+  
+            <!-- <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input 
+                  formControlName="firstName"
+                  id="firstName" 
+                  type="text" 
+                  class="form-control">
+              <div *ngIf="f.firstName.touched && f.firstName.invalid" class="alert alert-danger">
+                  <div *ngIf="f.firstName.errors.required">First Name is required.</div>
+                  <div *ngIf="f.firstName.errors.firstName">Please, enter valid email address.</div>
+              </div>
+          </div> -->
+          <!-- <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input 
+                formControlName="lastName"
+                id="lastName" 
+                type="text" 
+                class="form-control">
+            <div *ngIf="f.lastName.touched && f.lastName.invalid" class="alert alert-danger">
+                <div *ngIf="f.lastName.errors.required">Last Name is required.</div>
+                <div *ngIf="f.lastName.errors.lastName">Please, enter valid email address.</div>
+            </div>
+        </div> -->
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input 
+                formControlName="email"
+                id="email" 
+                type="text" 
+                class="form-control">
+            <div *ngIf="f.email.touched && f.email.invalid" class="alert alert-danger">
+                <div *ngIf="f.email.errors.required">Email is required.</div>
+                <div *ngIf="f.email.errors.email">Please, enter valid email address.</div>
+            </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline-primary" data-dismiss="modal" (click)="closeDialog()">Close</button>
-              <button type="submit" class="btn btn-primary">Add</button>
-          </div>
+            <!-- <div class="form-group">
+              <label for="password">Password</label>
+              <input 
+                  formControlName="password"
+                  id="password" 
+                  type="password" 
+                  class="form-control">
+              <div *ngIf="f.password.touched && f.password.invalid" class="alert alert-danger">
+                  <div *ngIf="f.password.errors.required">password is required.</div>
+                  <div *ngIf="f.password.errors.minlength">password should be 3 character.</div>
+              </div>
+          </div> -->
+          <!-- <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input 
+                formControlName="confirmPassword"
+                id="confirmPassword" 
+                type="password" 
+                class="form-control">
+              <div *ngIf="f.confirmPassword.touched && f.confirmPassword.invalid" class="alert alert-danger">
+                <div *ngIf="f.confirmPassword.errors.required">password is required.</div>
+                <div *ngIf="f.confirmPassword.errors.minlength">password should be 3 character.</div>
+            </div>
+        </div> -->
+        <!-- <div class="form-group">
+          <label for="phone">Phone</label>
+          <input 
+              formControlName="phone"
+              id="phone" 
+              type="number" 
+              class="form-control">
+      </div> -->
+            <button class="btn btn-primary" type="submit">Send Email</button>
+        </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-primary" data-dismiss="modal" (click)="closeDialog()">Close</button>
+
+          
+        </div>
       </div>
-  </form> -->
