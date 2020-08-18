@@ -41,7 +41,7 @@ import { HasPermissionDirective } from './directives/has-permission.directive';
     ControlMessageComponent,
     DefaultDateFormatPipe,
     DefaultDateTimeFormatPipe,
-        FilterBadgeComponent,
+    FilterBadgeComponent,
     DateColumnFilterComponent,
     OptionsColumnFilterComponent,
     TextColumnFilterComponent,

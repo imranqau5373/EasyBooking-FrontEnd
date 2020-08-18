@@ -3,35 +3,46 @@
   <br>
   <div class="container">
     <div class="row">
-      <div class="col-md-12 col-lg-6">
-        <div class="input-group mb-3">
-          <div class="input-group-prepend"> <span class="input-group-text" id="basic-addon1"><i class="material-icons ">search</i></span> </div>
+
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label for="SportField" class="font-weight-bolder">Select Company</label>
+              <select  (change)="setCompanyId($event)" name="CopmanyId" class="form-control">
+               <option  [value]="''" disabled>Select Company</option>
+                <option [value]="company.id" *ngFor="let company of bookingCompanies">{{company.companyName}}</option>
+             </select>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label for="NameField" class="font-weight-bolder">Booking Date</label>
+              <input type="date" class="form-control" name="CourtEndDate" [value]='bookingDate'>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="form-group">
+              <button class="btn btn-secondary  org-radius ml-3" style="margin-top: 30px;" type="button" id="dropdownMenuButton" (click)="applyFilter()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Apply Filter </button>
+            </div>
+          </div>
+          <!-- <div class="input-group-prepend"> <span class="input-group-text" id="basic-addon1"><i class="material-icons ">search</i></span> </div>
           <input type="text" class="form-control form-resizer" placeholder="Search" aria-label="search" aria-describedby="basic-addon1">
           <div class="dropdown">
             <button class="btn btn-secondary  org-radius ml-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="material-icons mr-1">filter_list</i>Filter </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"> <a class="dropdown-item" href="#">New to old</a> <a class="dropdown-item" href="#">Old to new</a> <a class="dropdown-item" href="#">Most used</a> </div>
-          </div>
-          <label for="SportField" class="font-weight-bolder">Select Company</label>
-          <select  (change)="setCompanyId($event)" name="CopmanyId" class="form-control">
-           <option  [value]="''" disabled>Select Company...</option>
-            <option [value]="company.id" *ngFor="let company of bookingCompanies">{{company.companyName}}</option>
-         </select>
-          <span>Booking Date</span>
-          <input type="date" class="float-left" [(ngModel)]="bookingDate" placeholder="Search" aria-label="search" aria-describedby="basic-addon1">
-
-          <input type="button" (click)="applyFilter()" class="btn btn-primary float-right mr-2" value="Apply Filter" aria-describedby="basic-addon1">
-        </div>
-      </div>
+          </div> -->
     </div>
   </div>
   <div class="container">
     <div class="row">
       <div class="col-md-12 mt-4">
         <h2 class="mb-3 font-weight-bolder">Boolking List</h2>
-        <div class="card card-margin" *ngFor="let booking of courtsBookingList.CourtBooking" > 
-            <a href="javascript:void(0);" (click)="openBookingDialog()" class="card-body" 
+        <div class="card card-margin" *ngFor="let booking of courtsBookingList.CourtBooking | paginate : paggerConfig; let i=index" > 
+            <a href="javascript:void(0);" (click)="openBookingDialog(booking.isBooked,booking.id)" class="card-body" 
             data-keyboard="false" data-backdrop="static" style="text-decoration: none; color: inherit; text-transform: inherit;">
-            <h5 class="card-title">{{booking.name}} <span class="badge badge-success float-right">Booked Now</span></h5>
+            <h5 class="card-title">{{booking.name}} 
+              <span *ngIf="!booking.isBooked" class="badge badge-success float-right">Booked Now</span>
+              <span *ngIf="booking.isBooked" class="badge badge-danger float-right">Booked</span>
+            </h5>
             <p></p>
             <h6 class="card-subtitle mb-2 text-muted">Start Time: {{booking.bookingStartTime | DefaultDateTimeFormat}} </h6>
               <p></p>
@@ -48,7 +59,24 @@
           </div>
         </div>
         <br>
-
+        <div class="card-footer table-card-footer">
+          <nav class="nav-pagination">
+            <div class="table-entries ">
+              <p>
+                <select class="form-control" aria-label="page-size" [(ngModel)]="pageSize" name="pageSize"
+                  (ngModelChange)="changePageSize($event)">
+                  <option *ngFor="let item of pageSizeList" [ngValue]="item">{{item}}</option>
+                </select>
+              </p>
+            </div>
+            <div class="table-pagination " *ngIf="paggerConfig.totalItems">
+              <p>
+                <pagination-controls (pageChange)="pageChange($event)" class="my-pagination">
+                </pagination-controls>
+              </p>
+            </div>
+          </nav>
+        </div>
       </div>
     </div>
   </div>

@@ -48,14 +48,14 @@ export class SportsListComponent extends PagedListingComponentBase<SportsListMod
   pageChange(newPage: number) {
 
     this.paggerConfig.currentPage = newPage;
-    this.customRouter.navigateToSibling(this.router, this.activatedRoute, 'sports-list', { page: newPage });
+    this.customRouter.navigateToSibling(this.router, this.activatedRoute, 'categories-list', { page: newPage });
     this.refresh();
   }
 
   changePageSize(pageSize: number) {
 
     this.paggerConfig.itemsPerPage = pageSize;
-    this.customRouter.navigateToSibling(this.router, this.activatedRoute, 'sports-list', { itemsPerPage: pageSize });
+    this.customRouter.navigateToSibling(this.router, this.activatedRoute, 'categories-list', { itemsPerPage: pageSize });
     this.refresh();
   }
 

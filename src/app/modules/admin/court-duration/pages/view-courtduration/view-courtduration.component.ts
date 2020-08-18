@@ -52,7 +52,6 @@ export class ViewCourtdurationComponent implements OnInit {
   getDurationList(){
     this.courtsDurationService.getDurationSlots(this.durationId).subscribe(result => {
       if (result && result.successful) {
-        debugger;
         this.durationSlotsList = result.slotsList;
         if(this.durationSlotsList && this.durationSlotsList.length > 0){
 

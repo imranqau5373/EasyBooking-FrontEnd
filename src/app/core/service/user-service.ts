@@ -38,6 +38,11 @@ export class UsersService {
       addNewUser(model: AddUserModel): Observable<any> {
         return this._httpApiService.post("Identity/AddUser", model);
       }
+      addGuesUser(model: AddUserModel): Observable<any> {
+        return this._httpApiService.post("Identity/AddGuestUser", model);
+      }
+
+
       getSportsCompany():Observable<any>{
         return this._httpApiService.get("Sports/GetSportsCompanies",'');
       }

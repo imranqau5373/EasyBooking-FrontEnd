@@ -34,6 +34,27 @@ export class CourtsBookingService {
         return this._httpApiService.post("CourtsBooking/GetCourtsBookingsList",temp);
 
       }
+
+      getCourtsBookingListPaged(  name: string, questionCount: number, lastUpdated: any,
+        createdBy: string, statusId: string[], sortColumn: any, sortDirection: any,
+        pageNumber: any, pageSize: any):Observable<any>{
+          const temp = {
+            name: name,
+            questionCount: questionCount,
+            createdBy: createdBy,
+            statusId: statusId,
+            lastUpdated: lastUpdated ? {
+              Date: this.commonService.prepareDateFormat(lastUpdated.Date),
+              ComparisonType: lastUpdated.CompareType
+            } : null,
+            sortColumn: sortColumn,
+            sortDirection: sortDirection,
+            pageNumber: pageNumber,
+            pageSize: pageSize,
+          };
+          return this._httpApiService.post("CourtsBooking/GetCourtsBookingsList",temp);
+  
+        }
       saveBookingUser(model: UserBookingModel):Observable<any>{
 
         return this._httpApiService.post("CourtsBooking/GetCourtsBookingsList",model);

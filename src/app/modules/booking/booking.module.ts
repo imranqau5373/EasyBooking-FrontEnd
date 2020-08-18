@@ -12,6 +12,7 @@ import { LoginBookingDialogComponent } from './components/login-booking-dialog/l
 import { SignupBookingDialogComponent } from './components/signup-booking-dialog/signup-booking-dialog.component';
 import { ConfirmationBookingDialogComponent } from './components/confirmation-booking-dialog/confirmation-booking-dialog.component';
 import { RegistrationBookingDialogComponent } from './components/registration-booking-dialog/registration-booking-dialog.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 //import { jqxSchedulerComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxscheduler.ts';
 
@@ -19,11 +20,13 @@ import { RegistrationBookingDialogComponent } from './components/registration-bo
   declarations: [BookingPageComponent, BookingListComponent, BookingDialogComponent, LoginBookingDialogComponent, SignupBookingDialogComponent, ConfirmationBookingDialogComponent, RegistrationBookingDialogComponent],
   imports: [
     CommonModule,
+    SharedModule,
     BookingRoutingModule,
     jqxSchedulerModule,
     jqxBarGaugeModule ,
     FormsModule,
-    SharedModule
+    NgxPaginationModule,
+
   ],
   entryComponents:[BookingDialogComponent, LoginBookingDialogComponent, SignupBookingDialogComponent, ConfirmationBookingDialogComponent,RegistrationBookingDialogComponent]
   

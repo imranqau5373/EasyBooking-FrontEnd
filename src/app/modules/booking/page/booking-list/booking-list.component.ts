@@ -5,7 +5,7 @@ import { CourtsBookingService } from '@core/service/courtsBooking-service';
 import { SpeekioToastService } from '@shared/service/speekio-toast.service';
 import { CustomRouter } from '@shared/service/custom-router.service';
 import { PagingModel } from '@core/model/common/paging.model';
-import { CourtsBookingListModelPagged } from '@core/model/courtsBooking-model/CourtsBookingListModelPagged';
+import { CourtsBookingListModelPagged, FilterBookingListRequestDto } from '@core/model/courtsBooking-model/CourtsBookingListModelPagged';
 import { Subject } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { PagedListingComponentBase } from '@shared/service/page-listing-component-base';
@@ -31,6 +31,7 @@ export class BookingListComponent extends PagedListingComponentBase<CourtsBookin
   bookingCompanies : null;
   companyId : number;
   closeResult: string;
+  public filter: FilterBookingListRequestDto = new FilterBookingListRequestDto();
   constructor(
     private courtsBookingService: CourtsBookingService,
     private toastService: SpeekioToastService,
@@ -57,7 +58,7 @@ export class BookingListComponent extends PagedListingComponentBase<CourtsBookin
   pageChange(newPage: number) {
 
     this.paggerConfig.currentPage = newPage;
-    this.customRouter.navigateToSibling(this.router, this.activatedRoute, 'courtbooking-list', { page: newPage });
+    this.customRouter.navigateToSibling(this.router, this.activatedRoute, 'list', { page: newPage });
     this.refresh();
   }
 
@@ -65,7 +66,7 @@ export class BookingListComponent extends PagedListingComponentBase<CourtsBookin
   changePageSize(pageSize: number) {
 
     this.paggerConfig.itemsPerPage = pageSize;
-    this.customRouter.navigateToSibling(this.router, this.activatedRoute, 'courtbooking-list', { itemsPerPage: pageSize });
+    this.customRouter.navigateToSibling(this.router, this.activatedRoute, 'list', { itemsPerPage: pageSize });
     this.refresh();
   }
 
@@ -73,7 +74,9 @@ export class BookingListComponent extends PagedListingComponentBase<CourtsBookin
   protected list(
     request: PagingModel,
     finishedCallback: Function) {
-      this.courtsBookingService.getCourtsBookingList(this.bookingDate)
+      this.courtsBookingService.getCourtsBookingListPaged(this.filter.Name.value, this.filter.AddedQuestions.value,
+        this.filter.LastUpdated.value, this.filter.CreatedBy.value, this.filter.StatusId.value,
+        this.sorting, this.sortDirection ? 'ASC' : 'DESC', request.currentPage, request.itemsPerPage)
         .pipe(
           finalize(() => {
             finishedCallback();
@@ -84,13 +87,13 @@ export class BookingListComponent extends PagedListingComponentBase<CourtsBookin
             return;
           };
           var response = result.body;
+          this.paggerConfig.totalItems = result.body.totalCount;
           if (!response.successful) {
             this.toastService.showError(response.message);
             return;
           }
           if (response.items && response.items.length > 0) {
             this.courtsBookingList.CourtBooking = response.items;
-
             this.paggerConfig.totalItems = response.totalCount;
           }
 
@@ -101,9 +104,12 @@ export class BookingListComponent extends PagedListingComponentBase<CourtsBookin
 
   }
 
-  openBookingDialog(){
+  openBookingDialog(isbooked : boolean,slotId : number){
+    if(isbooked){
+      return false;
+    }
     if(this.authenticationService.isUserLoggedIn()){
-      this.openLoggedInUser();
+      this.openLoggedInUser(slotId);
     }
     else{
       this.openBookingRegistration();
@@ -111,8 +117,9 @@ export class BookingListComponent extends PagedListingComponentBase<CourtsBookin
 
   }
 
-  private openLoggedInUser(){
-    const modalRef = this.modalService.open(BookingDialogComponent, { size: 'xl', backdrop: 'static' });
+  private openLoggedInUser(slotId : number){
+    const modalRef = this.modalService.open(BookingDialogComponent, { size: 'small', backdrop: 'static' });
+    modalRef.componentInstance.slotId = slotId;
     //    modalRef.componentInstance.LoaderService = this.ngxUiLoaderService;
     modalRef.result.then((result: any) => {
 
@@ -122,7 +129,7 @@ export class BookingListComponent extends PagedListingComponentBase<CourtsBookin
   }
 
   private openBookingRegistration(){
-    const modalRef = this.modalService.open(RegistrationBookingDialogComponent, { size: 'xl', backdrop: 'static' });
+    const modalRef = this.modalService.open(RegistrationBookingDialogComponent, { size: 'small', backdrop: 'static' });
     //    modalRef.componentInstance.LoaderService = this.ngxUiLoaderService;
     modalRef.result.then((result: any) => {
 
@@ -149,7 +156,8 @@ export class BookingListComponent extends PagedListingComponentBase<CourtsBookin
   }
 
   applyFilter(){
-    this.refresh();
+    console.log(this.bookingDate);
+    //this.refresh();
   }
 
   getBookingCompanies(){

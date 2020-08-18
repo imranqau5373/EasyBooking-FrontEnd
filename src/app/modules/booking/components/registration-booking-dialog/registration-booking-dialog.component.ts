@@ -24,7 +24,7 @@ export class RegistrationBookingDialogComponent implements OnInit {
 
   login(){
     this.closeDialog();
-    const modalRef = this.modalService.open(LoginBookingDialogComponent, { size: 'xl', backdrop: 'static' });
+    const modalRef = this.modalService.open(LoginBookingDialogComponent, { size: 'small', backdrop: 'static' });
     //    modalRef.componentInstance.LoaderService = this.ngxUiLoaderService;
     modalRef.result.then((result: any) => {
 
@@ -35,7 +35,7 @@ export class RegistrationBookingDialogComponent implements OnInit {
 
   singup(){
     this.closeDialog();
-    const modalRef = this.modalService.open(SignupBookingDialogComponent, { size: 'xl', backdrop: 'static' });
+    const modalRef = this.modalService.open(SignupBookingDialogComponent, { size: 'small', backdrop: 'static' });
     //    modalRef.componentInstance.LoaderService = this.ngxUiLoaderService;
     modalRef.result.then((result: any) => {
 

@@ -39,7 +39,6 @@ export class LoginComponent implements OnInit {
   login() {
     this.alertService.clear();
     this._accountService.UserLogin(this.signInModel).subscribe(result => {
-      debugger;
       if (result && result.body && result.body.successful) {
          localStorage.setItem('userName', result.body.userName);
          localStorage.setItem('companyId', result.body.companyId);

@@ -51,15 +51,14 @@ export class SignupBookingDialogComponent implements OnInit {
     return this.signupVerificationForm.controls;
 }
 
-saveUser(form: any) {
+saveUser() {
   this.userModel.email = this.signupVerificationForm.controls["email"].value;
-  this.usersService.addNewUser(this.userModel).subscribe(result => {
+  this.usersService.addGuesUser(this.userModel).subscribe(result => {
     let response = result.body;
     if (!response || !response.successful) {
       this.speekioToastService.showError(response.message);
       return;
     }
-    console.log(result);
     this.speekioToastService.showSuccess(response.message);
       this.activeModal.dismiss();
   });
