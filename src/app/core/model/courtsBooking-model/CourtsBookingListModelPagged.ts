@@ -40,8 +40,8 @@ export class FilterBookingListRequestDto {
       options: null
   };
 
-  AddedQuestions: SearchModelDto = {
-      key: 'Category_AddedQuestions',
+  BookingDate: SearchModelDto = {
+      key: 'BookingDate',
       defaultValue: null,
       value: null,
       isOptionType: false,

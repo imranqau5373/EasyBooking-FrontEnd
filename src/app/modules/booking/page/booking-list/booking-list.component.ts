@@ -74,7 +74,7 @@ export class BookingListComponent extends PagedListingComponentBase<CourtsBookin
   protected list(
     request: PagingModel,
     finishedCallback: Function) {
-      this.courtsBookingService.getCourtsBookingListPaged(this.filter.Name.value, this.filter.AddedQuestions.value,
+      this.courtsBookingService.getCourtsBookingListPaged(this.filter.Name.value, this.filter.BookingDate.value,
         this.filter.LastUpdated.value, this.filter.CreatedBy.value, this.filter.StatusId.value,
         this.sorting, this.sortDirection ? 'ASC' : 'DESC', request.currentPage, request.itemsPerPage)
         .pipe(
@@ -92,7 +92,7 @@ export class BookingListComponent extends PagedListingComponentBase<CourtsBookin
             this.toastService.showError(response.message);
             return;
           }
-          if (response.items && response.items.length > 0) {
+          if (response.items) {
             this.courtsBookingList.CourtBooking = response.items;
             this.paggerConfig.totalItems = response.totalCount;
           }
@@ -156,8 +156,15 @@ export class BookingListComponent extends PagedListingComponentBase<CourtsBookin
   }
 
   applyFilter(){
-    console.log(this.bookingDate);
-    //this.refresh();
+    this.refresh();
+    // if(this.bookingDate){
+    //   // var setBookingDate = new Date(this.bookingDate);
+    //   // this.filter.BookingDate.value = setBookingDate;
+  
+    // }
+    // else
+    //   this.toastService.showError("Please select the date.")
+    
   }
 
   getBookingCompanies(){

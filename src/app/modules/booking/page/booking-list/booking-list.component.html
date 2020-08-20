@@ -4,7 +4,7 @@
   <div class="container">
     <div class="row">
 
-          <div class="col-lg-4">
+          <!-- <div class="col-lg-4">
             <div class="form-group">
               <label for="SportField" class="font-weight-bolder">Select Company</label>
               <select  (change)="setCompanyId($event)" name="CopmanyId" class="form-control">
@@ -12,11 +12,11 @@
                 <option [value]="company.id" *ngFor="let company of bookingCompanies">{{company.companyName}}</option>
              </select>
             </div>
-          </div>
+          </div> -->
           <div class="col-lg-4">
             <div class="form-group">
               <label for="NameField" class="font-weight-bolder">Booking Date</label>
-              <input type="date" class="form-control" name="CourtEndDate" [value]='bookingDate'>
+              <input type="date" class="form-control" name="bookingDate" [(ngModel)]='filter.BookingDate.value'>
             </div>
           </div>
           <div class="col-lg-4">
@@ -35,7 +35,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12 mt-4">
-        <h2 class="mb-3 font-weight-bolder">Boolking List</h2>
+        <h2 class="mb-3 font-weight-bolder">Booking List</h2>
         <div class="card card-margin" *ngFor="let booking of courtsBookingList.CourtBooking | paginate : paggerConfig; let i=index" > 
             <a href="javascript:void(0);" (click)="openBookingDialog(booking.isBooked,booking.id)" class="card-body" 
             data-keyboard="false" data-backdrop="static" style="text-decoration: none; color: inherit; text-transform: inherit;">

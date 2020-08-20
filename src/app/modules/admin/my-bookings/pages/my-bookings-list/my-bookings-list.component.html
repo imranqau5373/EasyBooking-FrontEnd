@@ -1,1 +1,59 @@
-<p>my-bookings-list works!</p>
+<section>
+    <div class="card table-card ">
+      <div class="card-header">
+        <h5> Booking List
+        </h5>
+    </div>
+  
+      <div class="card-body ">
+        <table class="table table-hover">
+          <thead class="thead ">
+            <tr class='clickable-row' data-href='url://'>
+              <th scope="col">
+                Booking Name
+              </th>
+              <th scope="col">
+                Facility Name
+              </th>
+              <th scope="col">Start Time</th>
+              <th scope="col">End Time</th>
+              <th scope="col">Booking Date</th>
+              <th scope="col">Pin Code</th>          
+            </tr>
+          </thead>
+          <tbody>
+  
+            <tr *ngFor="let booking of userBookingList.BookingList | paginate : paggerConfig; let i=index">
+              <td>
+                  {{booking.name}}
+              </td>
+              <td>      {{booking.courtName}}</td>
+              <td> {{booking.bookingStartTime | DefaultDateTimeFormat}} </td>
+              <td> {{booking.bookingEndTime | DefaultDateTimeFormat }}</td>
+              <td>{{booking.bookingStartTime | DefaultDateFormat}}</td>
+              <td>{{booking.pinCode}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-footer table-card-footer">
+        <nav class="nav-pagination">
+          <div class="table-entries ">
+            <p>
+              <select class="form-control" aria-label="page-size" [(ngModel)]="pageSize" name="pageSize"
+                (ngModelChange)="changePageSize($event)">
+                <option *ngFor="let item of pageSizeList" [ngValue]="item">{{item}}</option>
+              </select>
+            </p>
+          </div>
+          <div class="table-pagination " *ngIf="paggerConfig.totalItems">
+            <p>
+              <pagination-controls (pageChange)="pageChange($event)" class="my-pagination">
+              </pagination-controls>
+            </p>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </section>
+  
