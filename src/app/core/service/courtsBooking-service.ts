@@ -36,7 +36,7 @@ export class CourtsBookingService {
       }
 
       getCourtsBookingListPaged(  name: string, bookingDate: any, lastUpdated: any,
-        createdBy: string, statusId: string[], sortColumn: any, sortDirection: any,
+        createdBy: string, isBooked: boolean, sortColumn: any, sortDirection: any,
         pageNumber: any, pageSize: any):Observable<any>{
           const temp = {
             name: name,
@@ -45,7 +45,7 @@ export class CourtsBookingService {
               ComparisonType: 3
             } : null,
             createdBy: createdBy,
-            statusId: statusId,
+            IsBooked: isBooked,
             lastUpdated: lastUpdated ? {
               Date: this.commonService.prepareDateFormat(lastUpdated.Date),
               ComparisonType: lastUpdated.CompareType

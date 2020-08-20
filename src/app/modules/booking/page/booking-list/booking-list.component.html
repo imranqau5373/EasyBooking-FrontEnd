@@ -4,21 +4,21 @@
   <div class="container">
     <div class="row">
 
-          <!-- <div class="col-lg-4">
+          <div class="col-lg-4">
             <div class="form-group">
-              <label for="SportField" class="font-weight-bolder">Select Company</label>
-              <select  (change)="setCompanyId($event)" name="CopmanyId" class="form-control">
-               <option  [value]="''" disabled>Select Company</option>
-                <option [value]="company.id" *ngFor="let company of bookingCompanies">{{company.companyName}}</option>
+              <label for="SportField" class="font-weight-bolder">Select Booking Type</label>
+              <select  (change)="setBookingType($event)" name="CopmanyId" class="form-control">
+               <option  [value]="0">Available</option>
+                <option [value]="1">Booked</option>
              </select>
             </div>
-          </div> -->
-          <div class="col-lg-4">
+          </div>
+          <!-- <div class="col-lg-4">
             <div class="form-group">
               <label for="NameField" class="font-weight-bolder">Booking Date</label>
               <input type="date" class="form-control" name="bookingDate" [(ngModel)]='filter.BookingDate.value'>
             </div>
-          </div>
+          </div> -->
           <div class="col-lg-4">
             <div class="form-group">
               <button class="btn btn-secondary  org-radius ml-3" style="margin-top: 30px;" type="button" id="dropdownMenuButton" (click)="applyFilter()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Apply Filter </button>

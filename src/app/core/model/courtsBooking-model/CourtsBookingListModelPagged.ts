@@ -64,14 +64,11 @@ export class FilterBookingListRequestDto {
       options: null
   };
 
-  StatusId: SearchModelDto = {
+  IsBooked: SearchModelDto = {
       key: 'IsBooked',
       defaultValue: '',
       value: '',
       isOptionType: false,
-      options: [
-          new StatusModelDto(1, 'Draft'),
-          new StatusModelDto(2, 'Published'),
-      ]
+      options: null
     }
   };

@@ -51,6 +51,7 @@ export class BookingListComponent extends PagedListingComponentBase<CourtsBookin
     if (currentPage) {
       this.paggerConfig.currentPage = currentPage;
     }
+    this.filter.IsBooked.value = false;
     super.ngOnInit();
     this.getBookingCompanies();
   }
@@ -75,7 +76,7 @@ export class BookingListComponent extends PagedListingComponentBase<CourtsBookin
     request: PagingModel,
     finishedCallback: Function) {
       this.courtsBookingService.getCourtsBookingListPaged(this.filter.Name.value, this.filter.BookingDate.value,
-        this.filter.LastUpdated.value, this.filter.CreatedBy.value, this.filter.StatusId.value,
+        this.filter.LastUpdated.value, this.filter.CreatedBy.value, this.filter.IsBooked.value,
         this.sorting, this.sortDirection ? 'ASC' : 'DESC', request.currentPage, request.itemsPerPage)
         .pipe(
           finalize(() => {
@@ -156,15 +157,9 @@ export class BookingListComponent extends PagedListingComponentBase<CourtsBookin
   }
 
   applyFilter(){
+    this.paggerConfig.currentPage = 1;
+    this.customRouter.navigateToSibling(this.router, this.activatedRoute, 'list', { page: 1 });
     this.refresh();
-    // if(this.bookingDate){
-    //   // var setBookingDate = new Date(this.bookingDate);
-    //   // this.filter.BookingDate.value = setBookingDate;
-  
-    // }
-    // else
-    //   this.toastService.showError("Please select the date.")
-    
   }
 
   getBookingCompanies(){
@@ -177,10 +172,11 @@ export class BookingListComponent extends PagedListingComponentBase<CourtsBookin
       }
     });
   }
-
-  setCompanyId(event : any){
-    this.companyId = event.target.value;
-    alert(this.companyId);
+  setBookingType(event : any){
+    if(event.target.value == "0")
+    this.filter.IsBooked.value = false;
+    else
+    this.filter.IsBooked.value = true;
   }
 
 }
