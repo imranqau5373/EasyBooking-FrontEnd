@@ -1,56 +1,131 @@
 
-<div class="container mt-4 mb-5">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card">
-          <form name="form"  (ngSubmit)="addCompanyForm.form.valid && addCompany()" #addCompanyForm="ngForm">
-            <div class="card-body">
-              <h5 class="card-title mb-4">Adding New Company</h5>
-              <!-- <form> -->
-              <div class="container">
-                <div class="row">
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <label for="NameField" class="font-weight-bolder">Name</label>
-                      <input type="text" class="form-control" name="Name"
-                      placeholder="Enter your Company name" [(ngModel)]="addCompanyData.name" #Name="ngModel"
-                      [ngClass]="{ 'is-invalid': addCompanyForm.submitted && Name.invalid}" minlength="2" required>
-                    <div *ngIf="addCompanyForm.submitted && Name.invalid" class="invalid-feedback">
-                      <div *ngIf="Name.errors?.required">Company Name is required</div>
-                      <div *ngIf="Name.errors?.minlength">Company Name must be at least 2 characters</div>
-                    </div>
+        <section>
+          <div class="container settings-wrapper">
+            <div class="card name-title-card mt-2 mb-2">
+              <div class="card-header">
+                <h5 class="card-title pt-2 mb-0 text-secondary">Company Settings</h5>
+              </div>
+              <div class="card-body ">
+                <div class="row align-items-start mb-5">
+                  <div class="col">
+                    <label class="form-label font-weight-bold">Brand color</label>
+                    <p class="small text-muted">Choose your brand color from the pallette to be shown to candidates at test pages</p>
+                  </div>
+                  <div class="col-sm-12 col-md-12 col-lg-8">
+                    <div class="card mb-4" style="width: 8rem;">
+                      <div class="color-bucket"></div>
+                      <div class="body-wrap">
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="#1F3D5E">
                       </div>
-                  </div>
-                <div class="col-lg-12">
-                    <div class="form-group">
-                      <label for="DescriptionField" class="font-weight-bolder">Company Description</label>
-                      <textarea class="form-control" name="Description" rows="3">
-                    </textarea>
                     </div>
                   </div>
-                  <div class="col-lg-4">
+                </div>
+                <div class="row align-items-start mb-5">
+                  <div class="col">
+                    <label class="form-label font-weight-bold">Company logo</label>
+                    <p class="small text-muted">Upload your company logo to be shown to candidates at test pages</p>
+                  </div>
+                  <div class="col-sm-12 col-md-12 col-lg-8">
                     <div class="form-group">
-                      <input type="text" class="form-control" name="url"
-                      placeholder="Enter your Company Url" [(ngModel)]="addCompanyData.url" #url="ngModel"
-                      [ngClass]="{ 'is-invalid': addCompanyForm.submitted && url.invalid}" minlength="5"
-                      pattern="[a-z]+.[a-z0-9.-]+.[a-z]{2,4}$" required>
-                    <div *ngIf="addCompanyForm.submitted && url.invalid" class="invalid-feedback">
-                      <div *ngIf="url.errors?.required">Url Name is required</div>
-                      <div *ngIf="url.errors?.minlength">Company Name must be at least 5 characters</div>
+                      <div class="logo-preview"> <img src="assets/img/no-img.svg" class="logo"> </div>
+                      <input type="file" class="form-control">
                     </div>
+                  </div>
+                </div>
+                <div class="row align-items-start mb-5">
+                  <div class="col">
+                    <label class="form-label  font-weight-bold">Languages</label>
+                    <p class="small text-muted">Select the languages that should be supported by portal</p>
+                  </div>
+                  <div class="col-sm-12 col-md-12 col-lg-8">
+                    <div class="custom-control custom-radio mb-2">
+                      <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input" checked>
+                      <label class="custom-control-label" for="customRadioInline1">English</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row align-items-start mb-5">
+                  <div class="col">
+                    <label class="form-label  font-weight-bold">Your plan</label>
+                    <p class="small text-muted">Select the languages that should be supported by portal</p>
+                  </div>
+                  <div class="col-sm-12 col-md-12 col-lg-8">
+                    <div class="card  mb-3 shadow-none plan-selected w-50">
+                      <div class="card-body">
+                        <p class="card-text-title">Starter Package</p>
+                        <p class="mb-1"><span class="jobs-open-label font-weight-bold">5</span> <span class="text-muted">active jobs / month</span></p>
+                        <div><span class=" font-weight-bold ">1,995.00 DKK / month</span> </div>
+                        <small class="text-muted">0.80 DKK / month per saved candidate</small> <br class="mb-3">
+                      </div>
+                      <div class="d-flex justify-content-end"> <a href="#" data-toggle="modal" data-target="#plan-change" data-keyboard="false" data-backdrop="static" class="float-right pr-3 pb-3">Change Plan</a> </div>
                     </div>
                   </div>
                 </div>
               </div>
-                <div class="container">
-                <button *ngIf="!isUpdated" type="submit" class="btn btn-primary float-right mr-2">Add Company</button>
-                <button *ngIf="companyId && companyId > 0" type="submit" class="btn btn-primary float-right mr-2">Update Company</button>
+              <div class="card-footer text-muted">
+                <button type="button" class="btn btn-link">Cancel</button>
+                <button type="button" class="btn btn-primary float-right">Save</button>
+              </div>
+            </div>
+          </div>
+          <!-- Modal plan change -->
+          <div class="modal fade" id="plan-change" tabindex="-1" role="dialog" aria-labelledby="plan-change" aria-hidden="true">
+            <div class="modal-dialog modal-xl plan-change-modal" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Change plan</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
                 </div>
-            <!-- <div class="card-footer"> <a (click)="addSports()" class="btn btn-primary float-right mr-2">Add Company</a>
-               -->
-           </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+                <div class="modal-body">
+                  <label class="form-label  mb-3">Please select your preferred plan</label>
+                  <div class="d-flex flex-wrap ">
+                    <div class="card  mb-3 shadow-none">
+                      <div class="card-body">
+                        <p class="card-text-title">Free Package</p>
+                        <p class="mb-1"><span class="jobs-open-label font-weight-bold">1 </span> <span class="text-muted">active job for 30 days</span></p>
+                        <div><span class=" font-weight-bold ">0 DKK for 30 days</span> </div>
+                        <br class="mb-3">
+                      </div>
+                    </div>
+                    <div class="card  mb-3 shadow-none plan-selected">
+                      <div class="card-body">
+                        <p class="card-text-title">Starter Package</p>
+                        <p class="mb-1"><span class="jobs-open-label font-weight-bold">5 </span> <span class="text-muted">active jobs / month</span></p>
+                        <div><span class=" font-weight-bold ">1,995.00 DKK / month</span> </div>
+                        <small class="text-muted">0.80 DKK / month per saved candidate</small> <br class="mb-3">
+                      </div>
+                    </div>
+                    <div class="card  mb-3 shadow-none">
+                      <div class="card-body">
+                        <p class="card-text-title">Professional Package</p>
+                        <p class="mb-1"><span class="jobs-open-label font-weight-bold">20 </span> <span class="text-muted">active jobs / month</span></p>
+                        <div><span class=" font-weight-bold ">2,995.00 DKK / month</span> </div>
+                        <small class="text-muted">0.80 DKK / month per saved candidate</small> <br class="mb-3">
+                      </div>
+                    </div>
+                    <div class="card  mb-3 shadow-none">
+                      <div class="card-body">
+                        <p class="card-text-title">Recruiter Package</p>
+                        <p class="mb-1"><span class="jobs-open-label font-weight-bold">999+ </span> <span class="text-muted">active jobs / month</span></p>
+                        <div><span class=" font-weight-bold ">4,995.00 DKK / month</span> </div>
+                        <small class="text-muted">0.80 DKK / month per saved candidate</small> <br class="mb-3">
+                      </div>
+                    </div>
+                  </div>
+                  <span class="text-muted"><i class="far fa-question-circle"></i>FAQs</span>
+                  <ol class="pl-c1">
+                    <small>
+                      <li class="text-muted mt-2 ">If a candidate is not deleted within 30-days, you will be charged 0.80 DKK</li>
+                    </small> <small>
+                      <li class="text-muted">Optional full setup of XX categories, company introduction, closing remarks, GDPR, T&amp;C, as well as XX hours of training in the system</li>
+                    </small>
+                  </ol>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Update plan</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Modal plan change -->
+        </section>

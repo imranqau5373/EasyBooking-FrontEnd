@@ -35,11 +35,11 @@ export class CourtsBookingService {
 
       }
 
-      getCourtsBookingListPaged(  name: string, bookingDate: any, lastUpdated: any,
+      getCourtsBookingListPaged(  CompanyId: number, bookingDate: any, lastUpdated: any,
         createdBy: string, isBooked: boolean, sortColumn: any, sortDirection: any,
         pageNumber: any, pageSize: any):Observable<any>{
           const temp = {
-            name: name,
+            CompanyId: CompanyId,
             bookingDate: bookingDate ? {
               Date: bookingDate,
               ComparisonType: 3

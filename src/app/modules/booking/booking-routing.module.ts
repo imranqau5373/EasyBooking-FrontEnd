@@ -17,6 +17,14 @@ export const routes: Routes = [
     path: 'list',
     component: BookingListComponent
   },
+  {
+    path: 'list/:companyid',
+    component: BookingListComponent
+  },
+  {
+    path: 'courtlist/:courtid',
+    component: BookingListComponent
+  },
 ];
 
 @NgModule({

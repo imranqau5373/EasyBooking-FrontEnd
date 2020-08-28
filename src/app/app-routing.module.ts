@@ -49,7 +49,7 @@ const routes: Routes = [
           import('@modules/admin/my-bookings/my-bookings.module').then(m => m.MyBookingsModule)
       },
       {
-        path: '',
+        path: 'company',
         loadChildren: () =>
           import('@modules/admin/company/company.module').then(m => m.CompanyModule)
       },

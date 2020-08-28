@@ -29,7 +29,6 @@ export class BookingListComponent extends PagedListingComponentBase<CourtsBookin
   destroy$: Subject<boolean> = new Subject<boolean>();
   bookingDate : Date;
   bookingCompanies : null;
-  companyId : number;
   closeResult: string;
   public filter: FilterBookingListRequestDto = new FilterBookingListRequestDto();
   constructor(
@@ -46,11 +45,18 @@ export class BookingListComponent extends PagedListingComponentBase<CourtsBookin
    }
 
   ngOnInit() {
+    
     this.userBookingModel = new UserBookingModel();
     let currentPage = this.customRouter.getQueryParamByKey(this.activatedRoute, 'page');
     if (currentPage) {
       this.paggerConfig.currentPage = currentPage;
     }
+    var companyId = this.activatedRoute.snapshot.params['companyid'];
+    if(companyId > 0){
+      this.filter.CompanyId.value = companyId;
+    }
+    else
+      this.filter.CompanyId.value = 0;
     this.filter.IsBooked.value = false;
     super.ngOnInit();
     this.getBookingCompanies();
@@ -75,7 +81,7 @@ export class BookingListComponent extends PagedListingComponentBase<CourtsBookin
   protected list(
     request: PagingModel,
     finishedCallback: Function) {
-      this.courtsBookingService.getCourtsBookingListPaged(this.filter.Name.value, this.filter.BookingDate.value,
+      this.courtsBookingService.getCourtsBookingListPaged(this.filter.CompanyId.value, this.filter.BookingDate.value,
         this.filter.LastUpdated.value, this.filter.CreatedBy.value, this.filter.IsBooked.value,
         this.sorting, this.sortDirection ? 'ASC' : 'DESC', request.currentPage, request.itemsPerPage)
         .pipe(

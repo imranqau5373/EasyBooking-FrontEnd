@@ -20,6 +20,10 @@ export const routes: Routes = [
     component: CreateCompanyComponent
   },
   {
+    path: 'company-details/:id',
+    component: CreateCompanyComponent
+  },
+  {
     path: 'company-create/:id',
     component: CreateCompanyComponent
   }

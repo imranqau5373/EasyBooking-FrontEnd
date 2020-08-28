@@ -32,8 +32,8 @@ export class FilterBookingListRequestDto {
       options: null
   };
 
-  Name: SearchModelDto = {
-      key: 'Sports_Id',
+  CompanyId: SearchModelDto = {
+      key: 'CompanyId',
       defaultValue: '',
       value: '',
       isOptionType: false,

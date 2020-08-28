@@ -42,22 +42,6 @@ getCompany(companyId:number){
     }
   });
 }
-addCompany(){
-  if(this.isUpdated == true)
-  this.updateCompany();
-  else{
-  this.companyService.addCompany(this.addCompanyData).subscribe(result => {
-    if (result && result.body.successful) {
-      this.toastService.showSuccess(result.body.message);
-      this.customRouter.navigateToSibling(this.router, this.activatedRoute, 'company-list');
-
-    }
-    else {
-      this.toastService.showError(result.message);
-    }
-  });
-}
-}
 updateCompany(){
 this.companyService.updateCompany(this.addCompanyData).subscribe(result =>{
   if(result && result.body.successful) {

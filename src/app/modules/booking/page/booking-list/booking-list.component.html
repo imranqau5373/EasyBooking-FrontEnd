@@ -61,7 +61,7 @@
         <br>
         <div class="card-footer table-card-footer">
           <nav class="nav-pagination">
-            <div class="table-entries ">
+            <div class="table-entries " *ngIf="paggerConfig.totalItems > 0">
               <p>
                 <select class="form-control" aria-label="page-size" [(ngModel)]="pageSize" name="pageSize"
                   (ngModelChange)="changePageSize($event)">
@@ -69,12 +69,13 @@
                 </select>
               </p>
             </div>
-            <div class="table-pagination " *ngIf="paggerConfig.totalItems">
+            <div class="table-pagination " *ngIf="paggerConfig.totalItems > 0">
               <p>
                 <pagination-controls (pageChange)="pageChange($event)" class="my-pagination">
                 </pagination-controls>
               </p>
             </div>
+            <p *ngIf="paggerConfig.totalItems == 0">No Records Found.</p>
           </nav>
         </div>
       </div>
