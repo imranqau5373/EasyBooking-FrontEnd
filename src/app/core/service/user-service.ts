@@ -26,7 +26,6 @@ export class UsersService {
       getUserRoles(): Observable<any> {
         return this._httpApiService.post("Identity/getUserRoles");
       }
-
 //Get Company Name for court duration
 
 

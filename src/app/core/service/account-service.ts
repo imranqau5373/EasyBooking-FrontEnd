@@ -14,6 +14,10 @@ export class AccountService {
     
     ) { }
     
+    getPackagesList(): Observable<any> {
+      return this._httpApiService.post("Identity/getPackageList");
+    }
+
     UserLogin(signInModel):Observable<any>{
       return this._httpApiService.post("Identity/SignIn",signInModel);
     }

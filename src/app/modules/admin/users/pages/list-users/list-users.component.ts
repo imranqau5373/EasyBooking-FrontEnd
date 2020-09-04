@@ -41,6 +41,10 @@ export class ListUsersComponent extends PagedListingComponentBase<UserListModelP
     dropdownSettings = {};
     userModel: AddUserModel;
     ngOnInit() {
+      let currentPage = this.customRouter.getQueryParamByKey(this.activatedRoute, 'page');
+      if (currentPage) {
+        this.paggerConfig.currentPage = currentPage;
+      }
       this.dropdownSettings = this.commonServie.getCommonMultiSelectSettings();
       this.userModel = new AddUserModel();
       this.roles = [];
@@ -89,15 +93,15 @@ export class ListUsersComponent extends PagedListingComponentBase<UserListModelP
     pageChange(newPage: number) {
       if (newPage) {
         this.paggerConfig.currentPage = newPage;
-        this.customRouter.navigateToSibling(this.router, this.activatedRoute, 'user-list', { page: newPage });
-        // this.refresh();
+        this.customRouter.navigateToSibling(this.router, this.activatedRoute, 'users-list', { page: newPage });
+         this.refresh();
       }
     }
   
     changePageSize(pageSize: number) {
       this.paggerConfig.itemsPerPage = pageSize;
-      this.customRouter.navigateToSibling(this.router, this.activatedRoute, 'user-list', { itemsPerPage: pageSize });
-      // this.refresh();
+      this.customRouter.navigateToSibling(this.router, this.activatedRoute, 'users-list', { itemsPerPage: pageSize });
+       this.refresh();
     }
     protected list(
       request: PagingModel,
@@ -112,12 +116,13 @@ export class ListUsersComponent extends PagedListingComponentBase<UserListModelP
       model.sortColumn = this.sorting;
       model.sortDirection = this.sortDirection ? 'ASC' : 'DESC';
       model.pageNumber = request.currentPage;
-      model.pageSize = 20;
+      model.pageSize = request.itemsPerPage;
       this.getUserList(model);
     }
     getUserList(filterModel: GetUserModel) {
       this.usersService.getUserList(filterModel).subscribe(result => {
         let response = result.body;
+        this.paggerConfig.totalItems = result.body.totalCount;
         if (!response || !response.successful) {
           this.speekioToastService.showError(response.message);
         }

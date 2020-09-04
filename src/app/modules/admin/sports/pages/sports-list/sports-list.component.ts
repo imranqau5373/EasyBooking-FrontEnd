@@ -62,9 +62,15 @@ export class SportsListComponent extends PagedListingComponentBase<SportsListMod
   protected list(
     request: PagingModel,
     finishedCallback: Function) {
-      this.sportsService.getSportsList(this.filter.Name.value, this.filter.AddedQuestions.value,
-        this.filter.LastUpdated.value, this.filter.CreatedBy.value, this.filter.StatusId.value,
-        this.sorting, this.sortDirection ? 'ASC' : 'DESC', request.currentPage, request.itemsPerPage)
+      this.sportsService.getSportsList(this.filter.Name.value, 
+        this.filter.AddedQuestions.value,
+        this.filter.LastUpdated.value, 
+        this.filter.CreatedBy.value, 
+        this.filter.StatusId.value,
+        this.sorting, 
+        this.sortDirection ? 'ASC' : 'DESC', 
+        request.currentPage, 
+        request.itemsPerPage)
         .pipe(
           finalize(() => {
             finishedCallback();
