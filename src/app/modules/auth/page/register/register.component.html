@@ -121,9 +121,24 @@
                   <div *ngIf="InputTimeZone.errors?.required">Time zone is required</div>
                 </div>                
             </div>
+            <div class="form-group">
+              <label for="InputPackagePlan">Package Plan</label>
+                      
+                <select
+                 [(ngModel)]="signUpModel.packageId"
+                 name="InputPackagePlan" #InputPackagePlan="ngModel" class="form-control" aria-describedby="TimeZoneHelp" 
+                 [ngClass]="{ 'is-invalid': signUpForm.submitted && InputPackagePlan.invalid}"
+                 required>
+                  <option  [ngValue]="0" disabled>Choose your subscription...</option>
+                   <option [ngValue]="package.id" *ngFor="let package of packages">{{package.name}}</option> 
+                </select>
+                <div *ngIf="signUpForm.submitted && InputPackagePlan.invalid" class="invalid-feedback">
+                  <div *ngIf="InputPackagePlan.errors?.required">Package plan is required</div>
+                </div>                
+            </div>
          
             <div class="text-center mt-4">
-              <button type="submit" class="btn btn-primary w-100">Start my free trial</button>
+              <button type="submit" class="btn btn-primary w-100">Get Started</button>
 
               <!-- need to add term url -->
               <div class="text-muted mt-2"> By signing up, you agree to our <a href="terms.html" target="_blank"
