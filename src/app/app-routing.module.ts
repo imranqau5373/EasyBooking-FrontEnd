@@ -53,6 +53,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('@modules/admin/company/company.module').then(m => m.CompanyModule)
       },
+      {
+        path: 'daytime',
+        loadChildren: () =>
+          import('@modules/admin/day-time-schedule/day-time.module').then(m => m.DayTimeModule)
+      },
 
     ]
   },

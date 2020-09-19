@@ -1,0 +1,74 @@
+
+
+<section>
+    <div class="card table-card ">
+        <div class="card-header ">
+            <h5> DayTime Schedule List
+                <a href="/admin/daytime/daytime-create" class="float-right">
+                    <button type="button" class="btn btn-primary"> <i
+                            class="fas fa-plus-circle"></i> Add new</button>
+                </a>
+            </h5>
+        </div>
+  
+        <div class="card-body ">
+                <table class="table table-hover">
+                    <thead class="thead ">
+                        <tr class='clickable-row'>
+                          <th style="width: 30%" scope="col">
+                              <span (click)="sort('Name')">
+                                <i class="fa fas fa-caret-up"
+                                    [ngClass]="{'fas fa-caret-down':sorting=='Name' && sortDirection,'fas fa-caret-up':sorting=='Name' && !sortDirection }"></i>
+                                     Name
+                            </span>
+                            <text-column-filter model="{{filter.Name.value}}" placeHolder="Name" id="Name"
+                                (onApply)="searchInList('Name',$event[0])" (onClear)="clearSearch('Name')">
+                            </text-column-filter>
+                        </th>
+                          <th style="width:20%" scope="col">Description</th>
+                          <th style="width:20%" scope="col">Last Updated</th>
+                          
+                          <th style="width:10%" scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let daytime of dayTimeZoneList.daytimezone | paginate : paggerConfig; let i=index">
+                            <td>
+                              <a [routerLink]="'/admin/daytime/daytime-update/'+ daytime.id">
+                                {{daytime.name}}
+                              </a>
+                            </td>
+                
+                            <td> {{daytime.description}} </td>
+                            <td>{{daytime.lastUpdated | DefaultDateFormat}}
+                            <td>
+                              <ul class="nav justify-content-start">
+                                <li class="nav-item mr-2"> <a [routerLink]="'/admin/daytime/daytime-update/'+ daytime.id" title="Edit DayTimeZone" data-placement="top"> 
+                                  <i class="fas fa-edit"></i> </a>
+                                </li>
+                                <li class="nav-item mr-2"> <a href="#" data-toggle="tooltip" title="Delete"
+                                  data-toggle="modal" data-target="#deleteCategoryModal" data-keyboard="false"
+                                  data-backdrop="static" 
+                                  data-placement="top"> <i class="fas fa-trash-alt"></i> </a> </li> 	
+                          
+                              </ul>
+                            </td>
+                          </tr>
+                    </tbody>
+                </table>
+        </div>
+        <div class="card-footer table-card-footer">
+          <nav class="nav-pagination">
+              <div class="table-entries ">
+                  <p>
+                  </p>
+              </div>
+              <div class="table-pagination ">
+                <pagination-controls (pageChange)="pageChange($event)" class="my-pagination">
+                </pagination-controls>
+              </div>
+          </nav>
+      </div>
+    </div>
+  </section>
+  

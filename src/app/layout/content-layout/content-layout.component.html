@@ -23,6 +23,11 @@
               </svg> </span> Facilities Duration </a>
                     <a routerLink="/admin/duration/duration-list" class="d-none"></a>
               </li>
+              <li routerLinkActive="active"> <a routerLink="/admin/daytime/daytime-list"> <span class="icon"> <svg>
+                <use xlink:href="assets/img/project-icons.svg#manual-icon"></use>
+                </svg> </span> DayTime Schedule </a>
+                      <a routerLink="/admin/daytime/daytime-list" class="d-none"></a>
+                </li>
                 <li routerLinkActive="active" *userHasPermission="permissions.MyBookings_View"> <a routerLink="/admin/my-bookings/bookings-list"> <span class="icon"> <svg>
                   <use xlink:href="assets/img/project-icons.svg#candidate-manager"></use>
                   </svg> </span> My Bookings </a>

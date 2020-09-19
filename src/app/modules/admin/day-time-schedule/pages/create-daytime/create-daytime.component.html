@@ -1,0 +1,53 @@
+<section>
+    <form name="form" (ngSubmit)="addDayTimeForm.form.valid && addDayTimeZone()" #addDayTimeForm="ngForm">
+      <div class="container mt-4 mb-5">
+        <div class="container mt-4 mb-5">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="card mb-4 name-title-card">
+                <div class="card-header">
+                  <div class="form-check-inline">
+                    <h5 class="card-title mb-0 pt-2" *ngIf="!isUpdated">Adding New DayTimeZone</h5>
+      
+                    <h5 class="card-title mb-0 pt-2" *ngIf="dayTimeZoneId && dayTimeZoneId > 0">Update Existing DayTimeZone</h5>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="NameField" class="font-weight-bolder">Name</label>
+                    <input type="text" class="form-control" name="Name"
+                    placeholder="Enter your daytimezone name" [(ngModel)]="addDayTimeData.name" #Name="ngModel"
+                    [ngClass]="{ 'is-invalid': addDayTimeForm.submitted && Name.invalid}" minlength="2" required>
+                    <div *ngIf="addDayTimeForm.submitted && Name.invalid" class="invalid-feedback">
+                      <div *ngIf="Name.errors?.required">DayTimeZone Name is required</div>
+                      <div *ngIf="Name.errors?.minlength">DayTimeZone Name must be at least 2 characters</div>
+                    </div>
+                  </div>
+                  <label for="DescriptionField" class="font-weight-bolder">DayTimeZone Description</label>
+                    <textarea class="form-control"  name="Description"
+                    [(ngModel)]="addDayTimeData.description" #Description="ngModel" rows="5"
+      
+                      ></textarea>
+                </div>
+              </div>
+      
+      
+            </div>
+      
+          </div>
+        </div>
+        <nav class="navbar fixed-bottom navbar-light bg-dark ml-5"> <a href="/admin/daytime/daytime-list"
+            class="btn btn-danger">Cancel</a>
+          <div class="form-inline my-2 my-lg-0">
+            <button *ngIf="!isUpdated" type="submit" class="btn btn-primary">Add DayTimeZone</button>
+      
+            <button *ngIf="dayTimeZoneId && (dayTimeZoneId > 0)" type="submit" class="btn btn-primary">Update DayTimeZone</button>
+      
+          </div>
+        </nav>
+      </div>
+    </form>
+  </section>
+  
+  
+  
