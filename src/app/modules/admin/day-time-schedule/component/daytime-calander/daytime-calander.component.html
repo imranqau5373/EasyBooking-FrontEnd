@@ -1,0 +1,86 @@
+
+  <table class="table day-time-schedule">
+      <thead>
+        <td></td>
+        <td>0</td>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+        <td>7</td>
+        <td>8</td>
+        <td>9</td>
+        <td>10</td>
+        <td>11</td>
+        <td>12</td>
+        <td>13</td>
+        <td>14</td>
+        <td>15</td>
+        <td>16</td>
+        <td>17</td>
+        <td>18</td>
+        <td>19</td>
+        <td>20</td>
+        <td>21</td>
+        <td>22</td>
+        <td>23</td>
+      </thead>
+      <tr (click)="openDialog(0)">
+        <td>
+          Monday
+        </td>
+        <td *ngFor="let hour of weekdayHours; let i = index">
+          <div [ngClass]="isTimePeriod(0,i)"></div>
+        </td>
+      </tr>
+      <tr (click)="openDialog(1)">
+        <td>
+            Tuesday
+        </td>
+        <td *ngFor="let hour of weekdayHours; let i = index">
+          <div [ngClass]="isTimePeriod(1,i)"></div>
+        </td>
+      </tr>
+      <tr (click)="openDialog(2)">
+        <td>
+            Wednesday
+        </td>
+        <td *ngFor="let hour of weekdayHours; let i = index">
+          <div [ngClass]="isTimePeriod(2,i)"></div>
+        </td>
+      </tr>
+      <tr (click)="openDialog(3)">
+        <td>
+            Thursday
+        </td>
+        <td *ngFor="let hour of weekdayHours; let i = index">
+          <div [ngClass]="isTimePeriod(3,i)"></div>
+        </td>
+      </tr>
+      <tr (click)="openDialog(4)">
+        <td>
+            Friday
+        </td>
+        <td *ngFor="let hour of weekdayHours; let i = index">
+          <div [ngClass]="isTimePeriod(4,i)"></div>
+        </td>
+      </tr>
+      <tr (click)="openDialog(5)">
+        <td>
+            Saturday
+        </td>
+        <td *ngFor="let hour of weekdayHours; let i = index">
+          <div [ngClass]="isTimePeriod(5,i)"></div>
+        </td>
+      </tr>
+      <tr (click)="openDialog(6)">
+        <td>
+            Sunday
+        </td>
+        <td *ngFor="let hour of weekdayHours; let i = index">
+          <div [ngClass]="isTimePeriod(6,i)"></div>
+        </td>
+      </tr>
+    </table>

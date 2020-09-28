@@ -23,12 +23,13 @@
                       <div *ngIf="Name.errors?.minlength">DayTimeZone Name must be at least 2 characters</div>
                     </div>
                   </div>
-                  <label for="DescriptionField" class="font-weight-bolder">DayTimeZone Description</label>
+                  <!-- <label for="DescriptionField" class="font-weight-bolder">DayTimeZone Description</label>
                     <textarea class="form-control"  name="Description"
                     [(ngModel)]="addDayTimeData.description" #Description="ngModel" rows="5"
       
-                      ></textarea>
+                      ></textarea> -->
                 </div>
+                <app-daytime-calander></app-daytime-calander>
               </div>
       
       

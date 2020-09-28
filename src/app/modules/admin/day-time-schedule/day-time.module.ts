@@ -6,12 +6,13 @@ import { SharedModule } from '@shared/shared.module';
 import { DaytimeBaseComponent } from './component/daytime-base/daytime-base.component';
 import { ListDaytimeComponent } from './pages/list-daytime/list-daytime.component';
 import { CreateDaytimeComponent } from './pages/create-daytime/create-daytime.component';
+import { DaytimeCalanderComponent } from './component/daytime-calander/daytime-calander.component';
 
 
 
 
 @NgModule({
-  declarations: [DaytimeBaseComponent,ListDaytimeComponent,CreateDaytimeComponent],
+  declarations: [DaytimeBaseComponent,ListDaytimeComponent,CreateDaytimeComponent, DaytimeCalanderComponent],
   imports: [
     CommonModule,
     SharedModule,
