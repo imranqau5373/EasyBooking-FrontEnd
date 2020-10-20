@@ -10,6 +10,13 @@ export class DayTimeModel {
 
 }
 
+export class DayTimeScheduleModel {
+    id: number;
+    startTime:Date;
+    endTime:Date;
+  
+}
+
 export class DayTimeListModelPagged {
 
     daytimezone : DayTimeModel[];

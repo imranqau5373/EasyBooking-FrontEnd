@@ -1,0 +1,26 @@
+<div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="slotDeleteDlgLabel">Add DayTime Schedule</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeDialog()"> <span aria-hidden="true">&times;</span> </button>
+    </div>
+    <div class="modal-body">
+      <ng-container>
+        <form  *ngIf="timePeriodsForm" [formGroup]="timePeriodsForm" class="row">
+              <div class="ngx-timepicker-field-example col-sm-5 mb-5">
+                <label class="mb-0" for="startTime">Start Time</label>
+                <!-- <ngx-timepicker-field id='startTime' [format]="24" [defaultTime]="'00:00'" (ngModelChange)="onTimeChange()" formControlName="startTime"></ngx-timepicker-field> -->
+                <input type="time" formControlName="startTime" class="form-control" id='startTime' name="appt">
+              </div>
+              <div class="ngx-timepicker-field-example col-sm-5 mb-5">
+                <label class="mb-0" for="endTime">End Time</label>
+                <!-- <ngx-timepicker-field   id="endTime" [format]="24" [defaultTime]="'00:00'" (ngModelChange)="onTimeChange()"  formControlName="endTime"></ngx-timepicker-field> -->
+                <input type="time" formControlName="endTime"  class="form-control" id="endTime" name="appt">
+              </div>
+        </form> 
+      </ng-container>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-primary" data-dismiss="modal" (click)="closeDialog()">Close</button>
+      <button type="button" class="btn btn-success" (click)="save()">Save</button>
+    </div>
+  </div>

@@ -7,17 +7,18 @@ import { DaytimeBaseComponent } from './component/daytime-base/daytime-base.comp
 import { ListDaytimeComponent } from './pages/list-daytime/list-daytime.component';
 import { CreateDaytimeComponent } from './pages/create-daytime/create-daytime.component';
 import { DaytimeCalanderComponent } from './component/daytime-calander/daytime-calander.component';
+import { WeekdayDialogComponent } from './component/weekday-dialog/weekday-dialog.component';
 
 
 
 
 @NgModule({
-  declarations: [DaytimeBaseComponent,ListDaytimeComponent,CreateDaytimeComponent, DaytimeCalanderComponent],
+  declarations: [DaytimeBaseComponent,ListDaytimeComponent,CreateDaytimeComponent, DaytimeCalanderComponent, WeekdayDialogComponent],
   imports: [
     CommonModule,
     SharedModule,
     DayTimeRoutingModule,
     FormsModule
-  ]
+  ],entryComponents : [WeekdayDialogComponent]
 })
 export class DayTimeModule { }

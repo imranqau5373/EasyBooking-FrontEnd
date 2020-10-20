@@ -26,6 +26,7 @@
     "angular-websocket": "^2.0.1",
     "jqwidgets-ng": "^9.0.0",
     "moment": "^2.24.0",
+    "ng-dialog": "^1.4.0",
     "ng-multiselect-dropdown": "^0.2.10",
     "ngx-pagination": "^5.0.0",
     "ngx-toastr": "^11.2.0",

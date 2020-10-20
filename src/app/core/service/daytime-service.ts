@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DayTimeModel } from '@core/model/daytime-model/DayTimeListModelPagged';
+import { DayTimeModel, DayTimeScheduleModel } from '@core/model/daytime-model/DayTimeListModelPagged';
 import { HttpApiService } from '@shared/http-api-service';
 import { CommonService } from '@shared/service/common.service';
 import { Observable  } from 'rxjs';
@@ -46,6 +46,10 @@ export class DayTimeService {
           getDayTimeZone(id: number):Observable<any>{
             let Myobject: any = { "id": id }
             return this._httpApiService.get("DayTimeSchedule/GetDayTimeSchedule",Myobject);
+          }
+
+          addDayTimeSchedule(model: DayTimeScheduleModel):Observable<any>{
+            return this._httpApiService.post("DayTimeSchedule/AddDayTimeSchedule",model);
           }
 
 
