@@ -11,9 +11,11 @@ export class DayTimeModel {
 }
 
 export class DayTimeScheduleModel {
-    id: number;
+    DayTimeScheduleId: number;
     startTime:Date;
     endTime:Date;
+    day:number;
+    id : number;
   
 }
 

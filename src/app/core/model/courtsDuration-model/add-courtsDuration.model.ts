@@ -4,6 +4,7 @@ export class AddCourtsDurationModel {
      name: string;
      description: string;
     courtId : number;
+    dayTimeZoneId : number;
     courtStartTime : Date;
     courtEndTime : Date;
     courtDate : Date;

@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { DayTimeZoneElement, TimePeriodElement } from '@core/model/daytime-model/day-time-zone';
+import { DayTimeService } from '@core/service/daytime-service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { SpeekioToastService } from '@shared/service/speekio-toast.service';
 import { Subscription } from 'rxjs';
 import { WeekdayDialogComponent } from '../weekday-dialog/weekday-dialog.component';
 
@@ -19,7 +22,7 @@ enum weekdayNames {
 @Component({
   selector: 'app-daytime-calander',
   templateUrl: './daytime-calander.component.html',
-  styleUrls: ['./daytime-calander.component.css']
+  styleUrls: ['./daytime-calander.component.scss']
 })
 export class DaytimeCalanderComponent implements OnInit {
 
@@ -35,19 +38,42 @@ export class DaytimeCalanderComponent implements OnInit {
   public isNew: boolean;
   private subscription: Subscription;
   closeResult: string;
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal,
+    private daytimeService: DayTimeService,
+    private toastService: SpeekioToastService,
+    private cd: ChangeDetectorRef,
+    public activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.getDayTimeZone();
+  }
+
+  getDayTimeZone(){
+    let dayTimeZoneId = this.activatedRoute.snapshot.params['id'];
+    this.daytimeService.getTimeSchedule(dayTimeZoneId).subscribe(result => {
+      if (result && result.successful)
+      {
+        this.dayTimeZone.dayTimeZoneSchedules = result.timeScheduleReponse;
+      }
+      else
+        this.toastService.showError(result.message);
+
+    });
   }
 
   openDialog(day: number): void {
-    const theDay = Object.keys(weekdayNames)[Number(day)];
-    const week = this.dayTimeZone.dayTimeZoneSchedules ? this.dayTimeZone.dayTimeZoneSchedules[theDay] : null;
-
+    let id = this.activatedRoute.snapshot.params['id'];
+    var timSchedule : any;
+    timSchedule = this.dayTimeZone.dayTimeZoneSchedules ? this.dayTimeZone.dayTimeZoneSchedules[day] : null;
     const modalRef = this.modalService.open(WeekdayDialogComponent, { size: 'small', backdrop: 'static' });
-    modalRef.componentInstance.data = { startTime: null, endTime:null };
+    modalRef.componentInstance.data = { startTime: timSchedule ? timSchedule.startTime : null, endTime:timSchedule ? timSchedule.endTime : null,day:day,id:id };
+    modalRef.componentInstance.scheduleData = this.dayTimeZone.dayTimeZoneSchedules[day];
     modalRef.result.then((result: any) => {
-
+      timSchedule = {};
+      timSchedule.startTime= result.startTime;
+      timSchedule.endTime= result.endTime;
+      this.dayTimeZone.dayTimeZoneSchedules[day] = timSchedule;
+  
     }, (reason) => {
       this.closeResult = '';
     });
@@ -55,7 +81,7 @@ export class DaytimeCalanderComponent implements OnInit {
 
   public isTimePeriod(day: number, hour: string): string {
     const weekDay = this.getWeekDay(day);
-    const week = this.dayTimeZone.dayTimeZoneSchedules ? this.dayTimeZone.dayTimeZoneSchedules[weekDay] : null;
+    const week = this.dayTimeZone.dayTimeZoneSchedules ? this.dayTimeZone.dayTimeZoneSchedules[day] : null;
 
     if (week && this.isHourInTimePeriod(hour, week)) {
 
@@ -65,10 +91,10 @@ export class DaytimeCalanderComponent implements OnInit {
   }
 
   
-  public isHourInTimePeriod(hour: string, timePeriods: Array<TimePeriodElement>): boolean {
+  public isHourInTimePeriod(hour: string, timePeriods: any): boolean {
     const result = false;
     if (timePeriods) {
-      for (const period of timePeriods) {
+      var period = timePeriods;
         const start = Number(period.startTime.split(':')[0]);
         const end = Number(period.endTime.split(':')[0]);
         const endMint = Number(period.endTime.split(':')[1]);
@@ -80,7 +106,7 @@ export class DaytimeCalanderComponent implements OnInit {
           return true;
         }
 
-      }
+  
     }
 
     return result;

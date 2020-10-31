@@ -1,0 +1,20 @@
+$dts-background-color:	#FF8C00;
+
+.day-time-schedule {
+  &__time-period {
+    background-color: $dts-background-color;
+    height: 1.5rem;
+    transition: all 1s ease-out;
+  }
+
+  tr td {
+    border-left: 1px solid #EDF2F9;
+    border-right: 1px solid #EDF2F9;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+.material-icons:hover,.material-icons:focus{
+  color: black!important;
+  cursor: default!important;
+}

@@ -48,8 +48,21 @@ export class DayTimeService {
             return this._httpApiService.get("DayTimeSchedule/GetDayTimeSchedule",Myobject);
           }
 
-          addDayTimeSchedule(model: DayTimeScheduleModel):Observable<any>{
-            return this._httpApiService.post("DayTimeSchedule/AddDayTimeSchedule",model);
+          getDayTimeZones():Observable<any>{
+            return this._httpApiService.get("DayTimeSchedule/GetDayTimeSchedules",'');
+          }
+
+          addTimeSchedule(model: DayTimeScheduleModel):Observable<any>{
+            return this._httpApiService.post("DayTimeSchedule/AddTimeSchedule",model);
+          }
+
+          updateTimeSchedule(model: DayTimeScheduleModel):Observable<any>{
+            return this._httpApiService.post("DayTimeSchedule/UpdateTimeSchedule",model);
+          }
+
+          getTimeSchedule(id: number):Observable<any>{
+            let Myobject: any = { "id": id }
+            return this._httpApiService.get("DayTimeSchedule/GetTimeSchedule",Myobject);
           }
 
 
