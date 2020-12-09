@@ -10,12 +10,12 @@
                 </svg> </span> dashboard </a> </li>
           <li routerLinkActive="active" *userHasPermission="permissions.SportsManager_View"> <a routerLink="/admin/categories/categories-list"> <span class="icon"> <svg>
                   <use xlink:href="assets/img/project-icons.svg#job-manager"></use>
-                </svg> </span> Category Manager </a>
+                </svg> </span> Facility Type </a>
             <a routerLink="/admin/categories/categories-list" class="d-none"></a>
           </li>
           <li routerLinkActive="active" *userHasPermission="permissions.CourtsManager_View"> <a routerLink="/admin/facilities/facilities-list"> <span class="icon"> <svg>
             <use xlink:href="assets/img/project-icons.svg#library"></use>
-            </svg> </span> Facilities Manager </a>
+            </svg> </span> Facility Settings </a>
                   <a routerLink="/admin/facilities/facilities-list" class="d-none"></a>
             </li>
             <li routerLinkActive="active" *userHasPermission="permissions.CourtsDuration_View"> <a routerLink="/admin/duration/duration-list"> <span class="icon"> <svg>
@@ -23,14 +23,14 @@
               </svg> </span> Facilities Duration </a>
                     <a routerLink="/admin/duration/duration-list" class="d-none"></a>
               </li>
-              <li routerLinkActive="active"> <a routerLink="/admin/daytime/daytime-list"> <span class="icon"> <svg>
+              <li routerLinkActive="active" *userHasPermission="permissions.SportsManager_View"> <a routerLink="/admin/daytime/daytime-list"> <span class="icon"> <svg>
                 <use xlink:href="assets/img/project-icons.svg#manual-icon"></use>
                 </svg> </span> DayTime Schedule </a>
                       <a routerLink="/admin/daytime/daytime-list" class="d-none"></a>
                 </li>
                 <li routerLinkActive="active" *userHasPermission="permissions.MyBookings_View"> <a routerLink="/admin/my-bookings/bookings-list"> <span class="icon"> <svg>
                   <use xlink:href="assets/img/project-icons.svg#candidate-manager"></use>
-                  </svg> </span> My Bookings </a>
+                  </svg> </span>Bookings </a>
                         <a routerLink="/admin/my-bookings/bookings-list" class="d-none"></a>
                 </li>
             <li routerLinkActive="active" *userHasPermission="permissions.SuperAdminUsers_View"> <a routerLink="/admin/users/users-list"> <span class="icon"> <svg>
@@ -38,12 +38,12 @@
               </svg> </span> Users & Roles</a>
                     <a routerLink="/admin/users/users-list" class="d-none"></a>
               </li>
-              <!-- <li class=""> <a href="/admin/company/company-list"> <span class="icon">
+              <li routerLinkActive="active" *userHasPermission="permissions.SportsManager_View"> <a href="/admin/company/company-details"> <span class="icon">
                 <svg>
                   <use xlink:href="assets/img/project-icons.svg#settings"></use>
                 </svg>
               </span> Configurations </a>
-             </li> -->
+             </li>
         </ul>
       </nav>
       <div class="bread-crumb" *ngIf="isLoggedInValue">

@@ -62,7 +62,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.signUpModel.timezone='';
-    this.signUpModel.packageId=0;    
+    this.signUpModel.packageId='';    
     this.getPackages();
   }
 

@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { AlertService } from '../../../../shared/_alert';
 import { ForgetPasswordModel } from './forgetpassword.model';
 import { AuthenticationService } from '@core/service/authenticationService';
+import { PermissionService } from '@shared/service/permission.service';
 
 
 @Component({
@@ -23,6 +24,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private _accountService : AccountService,
+    private _permissions : PermissionService,
     private router: Router,
     private alertService: AlertService,
     private authenticationService: AuthenticationService
@@ -42,9 +44,12 @@ export class LoginComponent implements OnInit {
       if (result && result.body && result.body.successful) {
          localStorage.setItem('userName', result.body.userName);
          localStorage.setItem('companyId', result.body.companyId);
-
           localStorage.setItem('userId', result.body.userId);
         this.authenticationService.loginAndRedirectToHome(result.body);
+        // if(this._permissions.hasPermission("")){
+
+        // }
+
       }
       else {
         this.alertService.error(result.body.message);

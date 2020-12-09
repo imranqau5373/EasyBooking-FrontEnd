@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ListCompanyComponent } from '../company/pages/list-company/list-company.component';
 import { CreateCompanyComponent } from '../company/pages/create-company/create-company.component';
+import { CompanyDetailsComponent } from './pages/company-details/company-details.component';
 
 
 export const routes: Routes = [
@@ -22,6 +23,10 @@ export const routes: Routes = [
   {
     path: 'company-details/:id',
     component: CreateCompanyComponent
+  },
+  {
+    path: 'company-details',
+    component: CompanyDetailsComponent
   },
   {
     path: 'company-create/:id',

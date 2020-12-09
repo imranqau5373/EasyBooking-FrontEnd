@@ -1,0 +1,108 @@
+
+        <section>
+            <div class="container settings-wrapper">
+              <div class="card name-title-card mt-2 mb-2">
+                <div class="card-header">
+                  <h5 class="card-title pt-2 mb-0 text-secondary">Company Settings</h5>
+                </div>
+                <div class="card-body ">
+                    <div class="row align-items-start mb-5">
+                        <div class="col">
+                          <label class="form-label font-weight-bold">Company Name</label>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-8">
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >
+                        </div>
+                    </div>
+                    <div class="row align-items-start mb-5">
+                        <div class="col">
+                          <label class="form-label font-weight-bold">Company Url</label>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-8">
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >
+                        </div>
+                    </div>
+                    <div class="row align-items-start mb-5">
+                        <div class="col">
+                          <label class="form-label font-weight-bold">Sub-Domain Prefix</label>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-8">
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >
+                        </div>
+                    </div>
+                    <div class="row align-items-start mb-5">
+                        <div class="col">
+                          <label class="form-label font-weight-bold">Package Name</label>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-8">
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                  <button type="button" class="btn btn-link">Cancel</button>
+                  <button type="button" class="btn btn-primary float-right">Save</button>
+                </div>
+              </div>
+            </div>
+            <!-- Modal plan change -->
+            <div class="modal fade" id="plan-change" tabindex="-1" role="dialog" aria-labelledby="plan-change" aria-hidden="true">
+              <div class="modal-dialog modal-xl plan-change-modal" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Change plan</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                  </div>
+                  <div class="modal-body">
+                    <label class="form-label  mb-3">Please select your preferred plan</label>
+                    <div class="d-flex flex-wrap ">
+                      <div class="card  mb-3 shadow-none">
+                        <div class="card-body">
+                          <p class="card-text-title">Free Package</p>
+                          <p class="mb-1"><span class="jobs-open-label font-weight-bold">1 </span> <span class="text-muted">active job for 30 days</span></p>
+                          <div><span class=" font-weight-bold ">0 DKK for 30 days</span> </div>
+                          <br class="mb-3">
+                        </div>
+                      </div>
+                      <div class="card  mb-3 shadow-none plan-selected">
+                        <div class="card-body">
+                          <p class="card-text-title">Starter Package</p>
+                          <p class="mb-1"><span class="jobs-open-label font-weight-bold">5 </span> <span class="text-muted">active jobs / month</span></p>
+                          <div><span class=" font-weight-bold ">1,995.00 DKK / month</span> </div>
+                          <small class="text-muted">0.80 DKK / month per saved candidate</small> <br class="mb-3">
+                        </div>
+                      </div>
+                      <div class="card  mb-3 shadow-none">
+                        <div class="card-body">
+                          <p class="card-text-title">Professional Package</p>
+                          <p class="mb-1"><span class="jobs-open-label font-weight-bold">20 </span> <span class="text-muted">active jobs / month</span></p>
+                          <div><span class=" font-weight-bold ">2,995.00 DKK / month</span> </div>
+                          <small class="text-muted">0.80 DKK / month per saved candidate</small> <br class="mb-3">
+                        </div>
+                      </div>
+                      <div class="card  mb-3 shadow-none">
+                        <div class="card-body">
+                          <p class="card-text-title">Recruiter Package</p>
+                          <p class="mb-1"><span class="jobs-open-label font-weight-bold">999+ </span> <span class="text-muted">active jobs / month</span></p>
+                          <div><span class=" font-weight-bold ">4,995.00 DKK / month</span> </div>
+                          <small class="text-muted">0.80 DKK / month per saved candidate</small> <br class="mb-3">
+                        </div>
+                      </div>
+                    </div>
+                    <span class="text-muted"><i class="far fa-question-circle"></i>FAQs</span>
+                    <ol class="pl-c1">
+                      <small>
+                        <li class="text-muted mt-2 ">If a candidate is not deleted within 30-days, you will be charged 0.80 DKK</li>
+                      </small> <small>
+                        <li class="text-muted">Optional full setup of XX categories, company introduction, closing remarks, GDPR, T&amp;C, as well as XX hours of training in the system</li>
+                      </small>
+                    </ol>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Update plan</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Modal plan change -->
+          </section>

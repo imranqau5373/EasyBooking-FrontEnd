@@ -129,7 +129,7 @@
                  name="InputPackagePlan" #InputPackagePlan="ngModel" class="form-control" aria-describedby="TimeZoneHelp" 
                  [ngClass]="{ 'is-invalid': signUpForm.submitted && InputPackagePlan.invalid}"
                  required>
-                  <option  [ngValue]="0" disabled>Choose your subscription...</option>
+                  <option  [ngValue]="''" disabled>Choose your subscription...</option>
                    <option [ngValue]="package.id" *ngFor="let package of packages">{{package.name}}</option> 
                 </select>
                 <div *ngIf="signUpForm.submitted && InputPackagePlan.invalid" class="invalid-feedback">

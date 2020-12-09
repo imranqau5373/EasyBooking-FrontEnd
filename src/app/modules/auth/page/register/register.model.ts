@@ -13,7 +13,7 @@ export class RegisterModel implements Deserializable {
     confirmPassword?: string | undefined;
     timezone?: string | undefined;
     subscribeNewsLetter?: boolean | undefined;
-    packageId:number;
+    packageId:string | undefined;
 
 
     deserialize(input: any) {
